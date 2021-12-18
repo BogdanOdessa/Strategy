@@ -39,11 +39,8 @@ namespace Assets.Scripts.UserControlSystem.Presenter
         */
             var selectable = hits
                 .Select(hit => hit.collider.GetComponentInParent<ISelectable>())
-                .Where(c => c != null)
-                .FirstOrDefault();
+                .FirstOrDefault(c => c != null);
             _selectedObject.SetValue(selectable);
-            
-            _selectedObject.CurrentValue?.ShowOutline(true);
         }
     }
 }
