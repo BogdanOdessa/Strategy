@@ -1,4 +1,4 @@
-using UnityEngine;
+﻿using UnityEngine;
 
 namespace Assets.Scripts.Abstractions
 {
@@ -9,6 +9,5 @@ namespace Assets.Scripts.Abstractions
         Sprite Icon { get; }
 
         void ShowOutline(bool value);
-
     }
 }
