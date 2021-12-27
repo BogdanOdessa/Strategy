@@ -8,7 +8,7 @@ namespace Core
     {
         public override void ExecuteSpecificCommand(IAttackCommand command)
         {
-            Debug.Log($"Dealing damage {command.Damage}");
+            Debug.Log(command.Attackable != null ? $"Attacking {command.Attackable}" : "No Target To Attack");
         }
     }
 }

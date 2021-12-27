@@ -1,20 +1,28 @@
 ﻿using System;
 using Abstractions;
-using Assets.Scripts.Abstractions;
 using UnityEngine;
 
 namespace UserControlSystem
 {
-    [CreateAssetMenu(fileName = nameof(SelectableValue), menuName = "Strategy Game/" + nameof(SelectableValue), order = 0)]
-    public class SelectableValue : ScriptableObject
+    [CreateAssetMenu(fileName = nameof(SelectableValue),
+        menuName = "Strategy Game/" + nameof(SelectableValue), order = 0)]
+    public class SelectableValue : ValueScriptableObject<ISelectable>
     {
-        public ISelectable CurrentValue { get; private set; }
-        public Action<ISelectable> OnSelected;
-
-        public void SetValue(ISelectable value)
-        {
-            CurrentValue = value;
-            OnSelected?.Invoke(value);
-        }
+        
     }
+    
+    #region OldRealisation
+    // [CreateAssetMenu(fileName = nameof(SelectableValue), menuName = "Strategy Game/" + nameof(SelectableValue), order = 0)]
+    // public class SelectableValue : ScriptableObject
+    // {
+    //     public ISelectable CurrentValue { get; private set; }
+    //     public Action<ISelectable> OnSelected;
+    //
+    //     public void SetValue(ISelectable value)
+    //     {
+    //         CurrentValue = value;
+    //         OnSelected?.Invoke(value);
+    //     }
+    // }
+    #endregion
 }

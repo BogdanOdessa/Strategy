@@ -8,7 +8,7 @@ namespace Core
     {
         public override void ExecuteSpecificCommand(IMoveCommand command)
         {
-            Debug.Log($"Move to {command.Destination}");
+            Debug.Log($"Move to {command.Target}");
         }
     }
 }

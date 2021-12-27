@@ -1,5 +1,4 @@
 ﻿using Abstractions;
-using Assets.Scripts.Abstractions;
 using TMPro;
 using UnityEngine;
 using UnityEngine.UI;
@@ -18,7 +17,7 @@ namespace UserControlSystem
 
         private void Start()
         {
-            _selectedValue.OnSelected += ONSelected;
+            _selectedValue.OnNewValue += ONSelected;
             ONSelected(_selectedValue.CurrentValue);
         }
         

@@ -4,6 +4,6 @@ namespace Abstractions.Commands.CommandsInterfaces
 {
     public interface IMoveCommand : ICommand
     {
-        Vector3 Destination { get; }
+        public Vector3 Target { get; }
     }
 }

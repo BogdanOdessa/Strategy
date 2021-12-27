@@ -1,4 +1,4 @@
-using Assets.Scripts.Abstractions;
+using Abstractions;
 using Assets.Scripts.UserControlSystem;
 using UnityEngine;
 using UserControlSystem;
@@ -12,7 +12,7 @@ namespace Assets.Scripts.UserControlSystem.Presenter
     
         private void Start()
         {
-            _selectedObject.OnSelected += OnSelected;
+            _selectedObject.OnNewValue += OnSelected;
             OnSelected(_selectedObject.CurrentValue);
         }
 

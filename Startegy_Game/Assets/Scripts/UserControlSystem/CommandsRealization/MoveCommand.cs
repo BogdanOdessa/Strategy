@@ -3,13 +3,13 @@ using UnityEngine;
 
 namespace UserControlSystem.CommandsRealization
 {
-    public class MoveCommand : IMoveCommand
+    public sealed class MoveCommand : IMoveCommand
     {
-        public MoveCommand(Vector3 destination)
+        public Vector3 Target { get; }
+        
+        public MoveCommand(Vector3 target)
         {
-            Destination = destination;
+            Target = target;
         }
-
-        public Vector3 Destination { get; }
     }
 }

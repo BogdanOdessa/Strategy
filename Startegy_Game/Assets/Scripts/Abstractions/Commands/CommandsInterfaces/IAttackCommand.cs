@@ -2,6 +2,7 @@
 {
     public interface IAttackCommand : ICommand
     {
-        int Damage { get; }
+        // public int Damage { get; }
+        public IAttackable Attackable { get; }
     }
 }

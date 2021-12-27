@@ -2,6 +2,6 @@
 {
     public interface IStopCommand : ICommand
     {
-        float Speed { get; }
+        public float Speed { get; }
     }
 }
