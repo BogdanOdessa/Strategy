@@ -20,7 +20,7 @@ namespace Assets.Scripts.UserControlSystem.Presenter
         {
             if(_currentSelectable == selected)
                 return;
-        
+            
             _currentSelectable?.ShowOutline(false);
             
             _currentSelectable = selected;

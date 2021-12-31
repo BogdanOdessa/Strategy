@@ -1,4 +1,5 @@
-﻿using Abstractions.Commands;
+﻿using System.Threading;
+using Abstractions.Commands;
 using Abstractions.Commands.CommandsInterfaces;
 using UnityEngine;
 
@@ -6,9 +7,23 @@ namespace Core
 {
     public class StopCommandExecutor: CommandExecutorBase<IStopCommand>
     {
+        public CancellationTokenSource CancellationTokenSource { get;  private set; }
+
         public override void ExecuteSpecificCommand(IStopCommand command)
         {
-            Debug.Log($"Unit stopped. Current Speed is {command.Speed}");
+            CancellationTokenSource.Cancel();
+            Debug.Log("Stopped");
+        }
+
+        public CancellationToken GetToken()
+        {
+            CancellationTokenSource = new CancellationTokenSource();
+            return CancellationTokenSource.Token;
+        }
+
+        public void ResetTokenSource()
+        {
+            CancellationTokenSource = null;
         }
     }
 }

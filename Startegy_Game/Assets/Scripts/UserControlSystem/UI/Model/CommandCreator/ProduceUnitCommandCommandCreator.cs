@@ -11,6 +11,6 @@ namespace UserControlSystem
         [Inject] private AssetsContext _context;
 
         protected override void ClassSpecificCommandCreation(Action<IProduceUnitCommand> creationCallback) 
-            => creationCallback?.Invoke(_context.Inject(new ProduceUnitCommand()));
+            => creationCallback?.Invoke(_context.Inject(new ProduceUnitCommandHeir()));
     }
 }

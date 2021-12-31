@@ -122,7 +122,7 @@ NavMeshSettings:
     preserveTilesOutsideBounds: 0
     debug:
       m_Flags: 0
-  m_NavMeshData: {fileID: 0}
+  m_NavMeshData: {fileID: 23800000, guid: 7709ce29c483d814c842c7a9bfc6a43d, type: 2}
 --- !u!114 &648710 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6153102248215952143, guid: bc553bdd614742942b0a1b0e4ccc7c8d, type: 3}
@@ -150,7 +150,7 @@ GameObject:
   m_Name: Cube
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &180168810
@@ -514,8 +514,8 @@ MonoBehaviour:
   _selectedObject: {fileID: 11400000, guid: 7141aae4b16134e49af0215b6da77bcf, type: 2}
   _eventSystem: {fileID: 1115100084}
   _groundClicksRMB: {fileID: 11400000, guid: 2b897e41a5c34e9419c18e2f8d7cd113, type: 2}
+  _attackablesRMB: {fileID: 11400000, guid: 0941b92e6598c6845b47fb9ac34c687a, type: 2}
   _groundTransform: {fileID: 283357927}
-  _attackableValue: {fileID: 11400000, guid: 88f07511f81c77e45b5e26982bc7875e, type: 2}
 --- !u!4 &758243066
 Transform:
   m_ObjectHideFlags: 0
@@ -603,7 +603,7 @@ GameObject:
   m_Name: Cube (1)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &839318901
@@ -798,7 +798,7 @@ Camera:
     height: 1
   near clip plane: 0.3
   far clip plane: 1000
-  field of view: 60
+  field of view: 50
   orthographic: 0
   orthographic size: 5
   m_Depth: -1
@@ -824,7 +824,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 963194225}
   m_LocalRotation: {x: -0.12888578, y: 0.86970407, z: -0.36239588, w: -0.30930984}
-  m_LocalPosition: {x: 14.797557, y: 15.315737, z: 19.685806}
+  m_LocalPosition: {x: 15.242158, y: 16.025822, z: 20.2318}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -912,24 +912,6 @@ GameObject:
   m_CorrespondingSourceObject: {fileID: 100004, guid: 3a3cea986292c2445a02c973a48c7e8b, type: 3}
   m_PrefabInstance: {fileID: 790876642}
   m_PrefabAsset: {fileID: 0}
---- !u!114 &1118654940
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1118654939}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 586d5dcc0fec4b13a26bc8b7544ab10e, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  outlineMode: 0
-  outlineColor: {r: 1, g: 1, b: 1, a: 1}
-  outlineWidth: 2
-  precomputeOutline: 0
-  bakeKeys: []
-  bakeValues: []
 --- !u!4 &1118654941 stripped
 Transform:
   m_CorrespondingSourceObject: {fileID: 400004, guid: 3a3cea986292c2445a02c973a48c7e8b, type: 3}
@@ -976,7 +958,7 @@ GameObject:
   m_Name: Cube (2)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1201992116
@@ -1055,11 +1037,6 @@ MeshFilter:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1201992115}
   m_Mesh: {fileID: 4300000, guid: 8ca07e83a1542b842b8d4f9579768b26, type: 3}
---- !u!1 &1285539820 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 4330751235572549121, guid: ad0a9f72c51b9a2468fa66dbedc61ad6, type: 3}
-  m_PrefabInstance: {fileID: 1327695166}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1327695166
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -1067,10 +1044,6 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 554524446}
     m_Modifications:
-    - target: {fileID: 1502805993, guid: ad0a9f72c51b9a2468fa66dbedc61ad6, type: 3}
-      propertyPath: GO
-      value: 
-      objectReference: {fileID: 1285539820}
     - target: {fileID: 4330751235572549121, guid: ad0a9f72c51b9a2468fa66dbedc61ad6, type: 3}
       propertyPath: m_Name
       value: Chomper
@@ -1172,7 +1145,7 @@ GameObject:
   m_Name: Cube (3)
   m_TagString: Untagged
   m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
+  m_NavMeshLayer: 1
   m_StaticEditorFlags: 4294967295
   m_IsActive: 1
 --- !u!4 &1573705992
@@ -1798,6 +1771,18 @@ PrefabInstance:
       propertyPath: m_Name
       value: MainBuilding
       objectReference: {fileID: 0}
+    - target: {fileID: 6153102248215952133, guid: bc553bdd614742942b0a1b0e4ccc7c8d, type: 3}
+      propertyPath: m_NavMeshLayer
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153102248215952133, guid: bc553bdd614742942b0a1b0e4ccc7c8d, type: 3}
+      propertyPath: m_StaticEditorFlags
+      value: 8
+      objectReference: {fileID: 0}
+    - target: {fileID: 6153102248215952142, guid: bc553bdd614742942b0a1b0e4ccc7c8d, type: 3}
+      propertyPath: _pivotPoint
+      value: 
+      objectReference: {fileID: 1719190356}
     - target: {fileID: 6153102248215952142, guid: bc553bdd614742942b0a1b0e4ccc7c8d, type: 3}
       propertyPath: _outlineTool
       value: 

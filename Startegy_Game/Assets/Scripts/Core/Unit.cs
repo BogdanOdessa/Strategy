@@ -11,6 +11,7 @@ namespace Core
     public class Unit : MonoBehaviour, ISelectable {
         public float Health => _health;
         public float MaxHealth => _maxHealth;
+        public Transform PivotPoint { get; }
         public Sprite Icon => _icon;
         public GameObject GameObject => GO;
 
