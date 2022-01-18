@@ -1,14 +1,11 @@
-using UnityEngine;
+﻿using UnityEngine;
 
-namespace Assets.Scripts.Abstractions
+namespace Abstractions
 {
-    public interface ISelectable
+    public interface ISelectable : IHealthHolder
     {
-        float Health { get; }
-        float MaxHealth { get; }
-        Sprite Icon { get; }
-
         void ShowOutline(bool value);
-
+        Transform PivotPoint { get; }
+        Sprite Icon { get; }
     }
 }

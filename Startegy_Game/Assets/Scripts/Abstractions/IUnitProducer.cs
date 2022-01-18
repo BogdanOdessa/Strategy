@@ -1,6 +1,6 @@
-namespace Assets.Scripts.Abstractions
+﻿namespace Abstractions
 {
-    public interface IUnitProducer 
+    public interface IUnitProducer
     {
         void ProduceUnit();
     }
