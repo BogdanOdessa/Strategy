@@ -11,7 +11,7 @@ namespace Core
 
         public override void ExecuteSpecificCommand(IStopCommand command)
         {
-            CancellationTokenSource.Cancel();
+            CancellationTokenSource?.Cancel();
             Debug.Log("Stopped");
         }
 
