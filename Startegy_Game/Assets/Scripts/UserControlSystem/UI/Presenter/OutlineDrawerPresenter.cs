@@ -1,19 +1,22 @@
+using System;
 using Abstractions;
 using Assets.Scripts.UserControlSystem;
+using UniRx;
 using UnityEngine;
 using UserControlSystem;
+using Zenject;
 
 namespace Assets.Scripts.UserControlSystem.Presenter
 {
     public class OutlineDrawerPresenter : MonoBehaviour
     {
-        [SerializeField] private SelectableValue _selectedObject;
+        [Inject] private IObservable<ISelectable> _selectedObject;
+        
         private ISelectable _currentSelectable;
     
         private void Start()
         {
-            _selectedObject.OnNewValue += OnSelected;
-            OnSelected(_selectedObject.CurrentValue);
+            _selectedObject.Subscribe(OnSelected);
         }
 
         private void OnSelected(ISelectable selected)

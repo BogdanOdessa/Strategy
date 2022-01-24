@@ -10,13 +10,14 @@ namespace UserControlSystem.UI.View
 {
     public sealed class CommandButtonsView : MonoBehaviour
     {
-        public Action<ICommandExecutor> OnClick;
+        public Action<ICommandExecutor, ICommandsQueue> OnClick;
 
         [SerializeField] private GameObject _attackButton;
         [SerializeField] private GameObject _moveButton;
         [SerializeField] private GameObject _patrolButton;
         [SerializeField] private GameObject _stopButton;
         [SerializeField] private GameObject _produceUnitButton;
+        [SerializeField] private GameObject _setRallyPoint;
 
         private Dictionary<Type, GameObject> _buttonsByExecutorType;
 
@@ -33,6 +34,8 @@ namespace UserControlSystem.UI.View
                 .Add(typeof(CommandExecutorBase<IStopCommand>), _stopButton);
             _buttonsByExecutorType
                 .Add(typeof(CommandExecutorBase<IProduceUnitCommand>), _produceUnitButton);
+            _buttonsByExecutorType.
+                Add(typeof(CommandExecutorBase<ISetRallyPointCommand>), _setRallyPoint);
         }
         public void BlockInteractions(ICommandExecutor ce)
         {
@@ -50,16 +53,18 @@ namespace UserControlSystem.UI.View
             _patrolButton.GetComponent<Selectable>().interactable = value;
             _stopButton.GetComponent<Selectable>().interactable = value;
             _produceUnitButton.GetComponent<Selectable>().interactable = value;
+            _setRallyPoint.GetComponent<Selectable>().interactable = value;
         }
 
-        public void MakeLayout(IEnumerable<ICommandExecutor> commandExecutors)
+       
+        public void MakeLayout(IEnumerable<ICommandExecutor> commandExecutors, ICommandsQueue queue)
         {
             foreach (var currentExecutor in commandExecutors)
             {
                 var buttonGameObject = GETButtonGameObjectByType(currentExecutor.GetType());
                 buttonGameObject.SetActive(true);
                 var button = buttonGameObject.GetComponent<Button>();
-                button.onClick.AddListener(() => OnClick?.Invoke(currentExecutor));
+                button.onClick.AddListener(() => OnClick?.Invoke(currentExecutor, queue));
             }
         }
 

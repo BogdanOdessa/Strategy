@@ -1,5 +1,4 @@
-﻿using System.ComponentModel;
-using Zenject;
+﻿using Zenject;
 
 namespace Core
 {

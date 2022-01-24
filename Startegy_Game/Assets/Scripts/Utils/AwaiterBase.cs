@@ -1,27 +1,34 @@
-using System;
-using System.Collections;
-using System.Collections.Generic;
-using UnityEngine;
-using Utils;
+﻿using System;
 
-public abstract class AwaiterBase<T,T2> : IAwaiter<T>
+namespace Utils
 {
-    protected  T2 ParentClass;
-    protected Action Continuation;
-    public bool IsCompleted { get; protected set; }
-
-    public void OnCompleted(Action continuation)
+    public abstract class AwaiterBase<TAwaited> : IAwaiter<TAwaited>
     {
-        if (IsCompleted)
+        protected Action _continuation;
+        protected bool _isCompleted;
+        protected TAwaited _result;
+
+        public bool IsCompleted => _isCompleted;
+
+        public TAwaited GetResult() => _result;
+        
+        public void OnCompleted(Action continuation)
         {
-            continuation?.Invoke();
+            if (_isCompleted)
+            {
+                continuation?.Invoke();
+            }
+            else
+            {
+                _continuation = continuation;
+            }
         }
-        else
+
+        protected void ONWaitFinish(TAwaited result)
         {
-            Continuation = continuation;
+            _result = result;
+            _isCompleted = true;
+            _continuation?.Invoke();
         }
     }
-    
-    public abstract T GetResult();
-
 }
