@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading;
+using System.Threading.Tasks;
 using Abstractions.Commands;
 using Abstractions.Commands.CommandsInterfaces;
 using UnityEngine;
@@ -8,7 +9,7 @@ using Utils;
 
 namespace Core
 {
-    public class MoveCommandExecutor: CommandExecutorBase<IMoveCommand>
+    public class MoveCommandExecutor: CommandExecutorBase<IMoveCommand>, ICommandExecutor
     {
         [SerializeField] private UnitMovementStop _stop;
         [SerializeField] private Animator _animator;
@@ -17,12 +18,10 @@ namespace Core
         private static readonly int Walk = Animator.StringToHash("Walk");
         private static readonly int Idle = Animator.StringToHash("Idle");
 
-        public override async void ExecuteSpecificCommand(IMoveCommand command)
+        public override async Task ExecuteSpecificCommand(IMoveCommand command)
         {
             _navMeshAgent.destination = command.Target;
             _animator.SetTrigger(Walk);
-            //_stopCommandExecutor.CancellationTokenSource = new CancellationTokenSource();
-            //var token = _stopCommandExecutor.CancellationTokenSource.Token;
             var stopToken = _stopCommandExecutor.GetToken();
             try
             {
@@ -30,10 +29,11 @@ namespace Core
             }
             catch
             {
+                _navMeshAgent.isStopped = true;
                 _navMeshAgent.ResetPath();
             }
+           
             _stopCommandExecutor.ResetTokenSource();
-            //_stopCommandExecutor.CancellationTokenSource = null;
             _animator.SetTrigger(Idle);
         }
     }

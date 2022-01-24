@@ -6,7 +6,7 @@ using UnityEngine;
 using UnityEngine.UI;
 using Zenject;
 
-namespace UserControlSystem
+namespace UserControlSystem.UI.Presenter
 {
     public sealed class BottomLeftPresenter : MonoBehaviour
     {
@@ -18,10 +18,7 @@ namespace UserControlSystem
 
         [Inject] private IObservable<ISelectable> _selectedValues;
 
-        private void Start()
-        {
-            _selectedValues.Subscribe(ONSelected);
-        }
+        private void Start() => _selectedValues.Subscribe(ONSelected);
 
         private void ONSelected(ISelectable selected)
         {

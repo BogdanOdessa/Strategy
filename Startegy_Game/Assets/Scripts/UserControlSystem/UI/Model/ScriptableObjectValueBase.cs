@@ -8,23 +8,23 @@ using Utils;
 
 public abstract class ScriptableObjectValueBase<T> : ScriptableObject, IAwaitable<T>
 {
-    public class NewValueNotifier<TAwaited> :  AwaiterBase<TAwaited,ScriptableObjectValueBase<TAwaited>>
+    public class NewValueNotifier<TAwaited> :  AwaiterBase<TAwaited>
     {
-        private TAwaited _result;
+        private ScriptableObjectValueBase<TAwaited> _scriptableObjectValueBase;
 
         public NewValueNotifier(ScriptableObjectValueBase<TAwaited> scriptableObjectValueBase)
         {
-            ParentClass = scriptableObjectValueBase;
-            ParentClass.OnNewValue += ONNewValue;
+            _scriptableObjectValueBase = scriptableObjectValueBase;
+            _scriptableObjectValueBase.OnNewValue += ONNewValue;
         }
         private void ONNewValue(TAwaited obj)
         {
-            ParentClass.OnNewValue -= ONNewValue;
+            _scriptableObjectValueBase.OnNewValue -= ONNewValue;
             _result = obj;
-            IsCompleted = true;
-            Continuation?.Invoke();
+            _isCompleted = true;
+            _continuation?.Invoke();
         }
-        public override TAwaited GetResult() => _result;
+        public  TAwaited GetResult() => _result;
         
     }
     // public class NewValueNotifier<TAwaited> : IAwaiter<TAwaited>

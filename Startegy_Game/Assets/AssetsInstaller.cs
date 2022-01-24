@@ -19,7 +19,7 @@ public sealed class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
             .FromInstance(_attackableClicksRMB);
         Container.Bind<IAwaitable<Vector3>>()
             .FromInstance(_groundClicksRMB);
-        Container.BindInstances(_legacyContext, _selectables);
         Container.Bind<IObservable<ISelectable>>().FromInstance(_selectables);
+        Container.BindInstances(_legacyContext, _selectables);
     }
 }

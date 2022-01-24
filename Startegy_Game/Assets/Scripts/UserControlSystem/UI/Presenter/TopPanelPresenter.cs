@@ -5,7 +5,6 @@ using Zenject;
 using UniRx;
 using System;
 using Abstractions;
-using Utils;
 
 public sealed class TopPanelPresenter : MonoBehaviour
 {
@@ -22,10 +21,6 @@ public sealed class TopPanelPresenter : MonoBehaviour
             _inputField.text = $"{t.Minutes:D2}:{t.Seconds:D2}";
         });
 
-        _menuButton.OnClickAsObservable().Subscribe(_ =>
-        {
-            _menuGo.SetActive(true);
-            GamePauser.Pause();
-        });
+        _menuButton.OnClickAsObservable().Subscribe(_ => _menuGo.SetActive(true));
     }
 }

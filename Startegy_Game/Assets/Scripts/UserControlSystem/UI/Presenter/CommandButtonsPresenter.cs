@@ -14,8 +14,8 @@ namespace UserControlSystem.UI.Presenter
 {
     public sealed class CommandButtonsPresenter : MonoBehaviour
     {
-        [Inject] private IObservable<ISelectable> _selectable;
         [SerializeField] private CommandButtonsView _view;
+        [Inject] private IObservable<ISelectable> _selectedValues;
         [Inject] private CommandButtonsModel _model;
         private ISelectable _currentSelectable;
         
@@ -26,7 +26,7 @@ namespace UserControlSystem.UI.Presenter
             _model.OnCommandCancel += _view.UnblockAllInteractions;
             _model.OnCommandAccepted += _view.BlockInteractions;
 
-            _selectable.Subscribe(ONSelected);
+            _selectedValues.Subscribe(ONSelected);
         }
 
         private void ONSelected(ISelectable selectable)
@@ -46,7 +46,8 @@ namespace UserControlSystem.UI.Presenter
             {
                 var commandExecutors = new List<ICommandExecutor>();
                 commandExecutors.AddRange((selectable as Component).GetComponentsInParent<ICommandExecutor>());
-                _view.MakeLayout(commandExecutors);
+                var queue = (selectable as Component).GetComponentInParent<ICommandsQueue>();
+                _view.MakeLayout(commandExecutors, queue);
             }
         }
     }
