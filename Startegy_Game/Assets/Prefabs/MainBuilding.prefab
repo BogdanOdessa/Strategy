@@ -19,6 +19,7 @@ GameObject:
   - component: {fileID: 3100033112895969301}
   - component: {fileID: 1176291400}
   - component: {fileID: 4840167414959226649}
+  - component: {fileID: 516662236}
   m_Layer: 0
   m_Name: MainBuilding
   m_TagString: Untagged
@@ -115,8 +116,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   outlineMode: 0
-  outlineColor: {r: 0.35503078, g: 0.8301887, b: 0.026628638, a: 1}
-  outlineWidth: 2
+  outlineColor: {r: 1, g: 0.7457433, b: 0, a: 1}
+  outlineWidth: 3
   precomputeOutline: 0
   bakeKeys: []
   bakeValues: []
@@ -205,3 +206,16 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 6da5cc22ea89ecf489201eb9f02c2864, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &516662236
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153102248215952133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bb2c094cfe0aa7d44bd52d67d7908ecc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factionId: 1

@@ -7,6 +7,11 @@ namespace Core
     {
         public float Health => _health;
         public float MaxHealth => _maxHealth;
+        public void RecieveDamage(int amount)
+        {
+            
+        }
+
         public Transform PivotPoint => _pivotPoint;
         public void ShowOutline(bool value)
         {

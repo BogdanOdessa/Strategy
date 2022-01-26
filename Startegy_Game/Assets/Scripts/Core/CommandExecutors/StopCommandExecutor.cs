@@ -8,7 +8,7 @@ namespace Core
 {
     public class StopCommandExecutor: CommandExecutorBase<IStopCommand>, ICommandExecutor
     {
-        public CancellationTokenSource CancellationTokenSource { get;  private set; }
+        public CancellationTokenSource CancellationTokenSource { get; set; }
 
         public override async Task ExecuteSpecificCommand(IStopCommand command)
         {
