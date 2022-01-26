@@ -2,10 +2,9 @@
 
 namespace Abstractions
 {
-    public interface ISelectable : IHealthHolder
+    public interface ISelectable : IHealthHolder, IIconHolder
     {
-        void ShowOutline(bool value);
         Transform PivotPoint { get; }
-        Sprite Icon { get; }
+        void ShowOutline(bool value);
     }
 }
