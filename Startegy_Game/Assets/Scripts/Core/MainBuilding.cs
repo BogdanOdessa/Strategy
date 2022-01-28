@@ -1,39 +1,45 @@
 using System;
 using Abstractions;
-using Abstractions.Commands;
-using Abstractions.Commands.CommandsInterfaces;
 using Assets.Scripts.ExternalTools;
 using UnityEngine;
-using Random = UnityEngine.Random;
 
-public sealed class MainBuilding : CommandExecutorBase<IProduceUnitCommand>, ISelectable
+public sealed class MainBuilding : MonoBehaviour, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
+    public GameObject GameObject => _go;
     public Transform PivotPoint => _pivotPoint;
+    public Vector3 RallyPoint;
+    [SerializeField] private GameObject _go;
+    public void ShowOutline(bool value)
+    {
+        if(this)
+            _outlineTool.enabled = value;
+    }
+    private void Start()
+    {
+        _outlineTool.enabled = false;
+    }
     public Sprite Icon => _icon;
 
-    [SerializeField] private Transform _unitsParent;
     [SerializeField] private float _maxHealth = 1000;
     [SerializeField] private Sprite _icon;
     [SerializeField] private Transform _pivotPoint;
     [SerializeField] private OutlineTool _outlineTool;
-    
-    private float _health = 1000;
 
-    private void Start()
-    {
-        ShowOutline(false);
-    }
+    private float _health = 1000;
     
-    public override void ExecuteSpecificCommand(IProduceUnitCommand command) 
-        => Instantiate(command.UnitPrefab, 
-            new Vector3(Random.Range(-10, 10), 0, Random.Range(-10, 10)), 
-            Quaternion.identity, 
-            _unitsParent);
-    
-    public void ShowOutline(bool value)
+    public void RecieveDamage(int amount)
     {
-        _outlineTool.enabled = value;
+        if (_health <= 0)
+        {
+            return;
+        }
+        _health -= amount;
+        if (_health <= 0)
+        {
+            Destroy(gameObject);
+        }
     }
+
 }

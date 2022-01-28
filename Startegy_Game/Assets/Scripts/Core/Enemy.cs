@@ -8,4 +8,8 @@ public class Enemy : MonoBehaviour, IAttackable
 {
     public float Health { get; }
     public float MaxHealth { get; }
+    public void RecieveDamage(int amount)
+    {
+       
+    }
 }

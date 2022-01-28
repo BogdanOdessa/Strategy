@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using Abstractions;
 using Abstractions.Commands;
 using Abstractions.Commands.CommandsInterfaces;
+using UniRx;
 using UnityEngine;
 using UserControlSystem.CommandsRealization;
 using UserControlSystem.UI.View;
@@ -13,22 +14,28 @@ namespace UserControlSystem.UI.Presenter
 {
     public sealed class CommandButtonsPresenter : MonoBehaviour
     {
-        [SerializeField] private SelectableValue _selectable;
         [SerializeField] private CommandButtonsView _view;
+        [Inject] private IObservable<ISelectable> _selectedValues;
+        [Inject] private IObservable<Vector3> _groundClicksRMB;
         [Inject] private CommandButtonsModel _model;
+        [Inject] private SelectableValue _selectedObject;
         private ISelectable _currentSelectable;
-        
+        private GameObject _gameObject;
+
         private void Start()
         {
             _view.OnClick += _model.OnCommandButtonClicked;
             _model.OnCommandSent += _view.UnblockAllInteractions;
             _model.OnCommandCancel += _view.UnblockAllInteractions;
             _model.OnCommandAccepted += _view.BlockInteractions;
-
-            _selectable.OnNewValue += ONSelected;
-            ONSelected(_selectable.CurrentValue);
+            _groundClicksRMB.Subscribe(OnRightClicked);
+            _selectedValues.Subscribe(ONSelected);
         }
-
+        private void OnRightClicked(Vector3 value)
+        {
+            var queue = _selectedObject.CurrentValue.GameObject.GetComponentInParent<ICommandsQueue>();
+            queue?.EnqueueCommand(new MoveCommand(value));
+        }
         private void ONSelected(ISelectable selectable)
         {
             if (_currentSelectable == selectable)
@@ -46,7 +53,8 @@ namespace UserControlSystem.UI.Presenter
             {
                 var commandExecutors = new List<ICommandExecutor>();
                 commandExecutors.AddRange((selectable as Component).GetComponentsInParent<ICommandExecutor>());
-                _view.MakeLayout(commandExecutors);
+                var queue = (selectable as Component).GetComponentInParent<ICommandsQueue>();
+                _view.MakeLayout(commandExecutors, queue);
             }
         }
     }

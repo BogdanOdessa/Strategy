@@ -1,3 +1,5 @@
+using System;
+using Abstractions;
 using UnityEngine;
 using UserControlSystem;
 using Utils;
@@ -17,6 +19,8 @@ public sealed class AssetsInstaller : ScriptableObjectInstaller<AssetsInstaller>
             .FromInstance(_attackableClicksRMB);
         Container.Bind<IAwaitable<Vector3>>()
             .FromInstance(_groundClicksRMB);
+        Container.Bind<IObservable<ISelectable>>().FromInstance(_selectables);
+        Container.Bind<IObservable<Vector3>>().FromInstance(_groundClicksRMB);
         Container.BindInstances(_legacyContext, _selectables);
     }
 }
