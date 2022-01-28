@@ -82,7 +82,8 @@ public partial class AttackCommandExecutor : CommandExecutorBase<IAttackCommand>
             {
                 _currentAttackOp.Cancel();
             }
-            _animator.SetTrigger("Idle");
+            if(_animator)
+                _animator.SetTrigger("Idle");
             _currentAttackOp = null;
             _targetTransform = null;
             _stopCommandExecutor.CancellationTokenSource = null;

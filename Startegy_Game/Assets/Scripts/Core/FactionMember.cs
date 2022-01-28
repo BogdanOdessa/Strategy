@@ -7,9 +7,10 @@ using Random = UnityEngine.Random;
 public class FactionMember : MonoBehaviour, IFactionMember
 {
     public int FactionId => _factionId;
-    [SerializeField] private int _factionId;
     private int _unitID;
     private FactionsDictionary _factionsDictionary;
+    
+    [SerializeField] private int _factionId;
     private void Start()
     {
         _unitID = GetInstanceID();

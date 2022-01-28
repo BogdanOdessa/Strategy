@@ -12,6 +12,7 @@ public class MainBuildingCommandQueue : MonoBehaviour, ICommandsQueue
     [Inject] CommandExecutorBase<ISetRallyPointCommand> _setRallyPointCommandExecutor;
     
     private ReactiveCollection<IUnitProductionTask> _queue = new ReactiveCollection<IUnitProductionTask>();
+    public ICommand CurrentCommand => default;
 
     public void Clear() { }
 

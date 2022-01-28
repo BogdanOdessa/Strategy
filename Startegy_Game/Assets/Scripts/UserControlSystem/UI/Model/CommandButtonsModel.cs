@@ -18,11 +18,14 @@ namespace UserControlSystem
         [Inject] private CommandCreatorBase<IMoveCommand> _mover;
         [Inject] private CommandCreatorBase<IPatrolCommand> _patroller;
         [Inject] private CommandCreatorBase<ISetRallyPointCommand> _rallyPointSetter;
+        [Inject] private CommandCreatorBase<IUpgradeCommand> _upgradeCommand;
+        [Inject] private CommandCreatorBase<ITeleportCommand> _teleportCommand;
 
-        private bool _commandIsPending;
+        private bool _commandIsPending = false;
 
         public void OnCommandButtonClicked(ICommandExecutor commandExecutor, ICommandsQueue commandsQueue)
         {
+            
             if (_commandIsPending)
             {
                 processOnCancel();
@@ -36,6 +39,8 @@ namespace UserControlSystem
             _mover.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
             _patroller.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
             _rallyPointSetter.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _upgradeCommand.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
+            _teleportCommand.ProcessCommandExecutor(commandExecutor, command => ExecuteCommandWrapper(command, commandsQueue));
         }
 
         public void ExecuteCommandWrapper(object command, ICommandsQueue commandsQueue)
@@ -63,7 +68,8 @@ namespace UserControlSystem
             _mover.ProcessCancel();
             _patroller.ProcessCancel();
             _rallyPointSetter.ProcessCancel();
-
+            _upgradeCommand.ProcessCancel();
+            _teleportCommand.ProcessCancel();
             OnCommandCancel?.Invoke();
         }
     }

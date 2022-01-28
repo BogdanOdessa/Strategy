@@ -20,6 +20,9 @@ GameObject:
   - component: {fileID: 1176291400}
   - component: {fileID: 4840167414959226649}
   - component: {fileID: 516662236}
+  - component: {fileID: 6153102246644643931}
+  - component: {fileID: 6153102246644643930}
+  - component: {fileID: 6153102246644643928}
   m_Layer: 0
   m_Name: MainBuilding
   m_TagString: Untagged
@@ -134,6 +137,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   RallyPoint: {x: 0, y: 0, z: 0}
+  _go: {fileID: 6153102248215952133}
   _maxHealth: 1000
   _icon: {fileID: 21300000, guid: 1458ff5613ae4704f9b9b05b114203bc, type: 3}
   _pivotPoint: {fileID: 6153102248215952130}
@@ -165,6 +169,7 @@ MonoBehaviour:
   _scriptableObjectInstallers: []
   _monoInstallers:
   - {fileID: 3100033112895969301}
+  - {fileID: 6153102246644643928}
   _installerPrefabs: []
   _autoRun: 1
   _kernel: {fileID: 0}
@@ -194,6 +199,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   _unitsParent: {fileID: 0}
   _maximumUnitsInQueue: 6
+  _upgradeCommandExecutor: {fileID: 0}
 --- !u!114 &4840167414959226649
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -219,3 +225,41 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _factionId: 1
+--- !u!114 &6153102246644643931
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153102248215952133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1296b35cb996944b5c2214dc62cf96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factionMemberParallelInfoUpdater: {fileID: 6153102246644643930}
+--- !u!114 &6153102246644643930
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153102248215952133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: cfa341a0ae5a4034b99f1216f0e4d791, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &6153102246644643928
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6153102248215952133}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3c1296b35cb996944b5c2214dc62cf96, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  _factionMemberParallelInfoUpdater: {fileID: 6153102246644643930}

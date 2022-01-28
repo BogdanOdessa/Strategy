@@ -7,10 +7,10 @@ public sealed class MainBuilding : MonoBehaviour, ISelectable, IAttackable
 {
     public float Health => _health;
     public float MaxHealth => _maxHealth;
+    public GameObject GameObject => _go;
     public Transform PivotPoint => _pivotPoint;
-
     public Vector3 RallyPoint;
-    
+    [SerializeField] private GameObject _go;
     public void ShowOutline(bool value)
     {
         if(this)

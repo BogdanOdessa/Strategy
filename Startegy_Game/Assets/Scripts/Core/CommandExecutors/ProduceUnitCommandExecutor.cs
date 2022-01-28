@@ -2,6 +2,7 @@
 using Abstractions;
 using Abstractions.Commands;
 using Abstractions.Commands.CommandsInterfaces;
+using Core.UpgradeCommand;
 using UniRx;
 using UnityEngine;
 using Utils;
@@ -19,6 +20,7 @@ namespace Core.CommandExecutors
 
         [SerializeField] private Transform _unitsParent;
         [SerializeField] private int _maximumUnitsInQueue = 6;
+        [SerializeField] private UpgradeCommandExecutor _upgradeCommandExecutor;
 
         private ReactiveCollection<IUnitProductionTask> _queue = new ReactiveCollection<IUnitProductionTask>();
 
@@ -34,15 +36,23 @@ namespace Core.CommandExecutors
             if (innerTask.TimeLeft <= 0)
             {
                 removeTaskAtIndex(0);
-                // Instantiate(innerTask.UnitPrefab, new Vector3(Random.Range(-10, 10), 0, 
-                //     Random.Range(-10, 10)), Quaternion.identity, _unitsParent);
-                var instance = _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position, Quaternion.identity, _unitsParent);
-                var queue = instance.GetComponent<ICommandsQueue>();
-                var mainBuilding = GetComponent<MainBuilding>();
-                queue.EnqueueCommand(new MoveCommand(mainBuilding.RallyPoint));
-                var factionMember = instance.GetComponent<FactionMember>();
-                factionMember.SetFaction(GetComponent<FactionMember>().FactionId);
+                CreateUnit(innerTask);
             }
+        }
+        private void CreateUnit(UnitProductionTask innerTask)
+        {
+            var instance =
+                _diContainer.InstantiatePrefab(innerTask.UnitPrefab, transform.position, Quaternion.identity, _unitsParent);
+            if (_upgradeCommandExecutor.ChomperIsUpgraded)
+            {
+                var upgradable = instance.GetComponent<IUpgradable>();
+                _upgradeCommandExecutor.UpgradeUnit(upgradable);
+            }
+            var queue = instance.GetComponent<ICommandsQueue>();
+            var mainBuilding = GetComponent<MainBuilding>();
+            queue.EnqueueCommand(new MoveCommand(mainBuilding.RallyPoint));
+            var factionMember = instance.GetComponent<FactionMember>();
+            factionMember.SetFaction(GetComponent<FactionMember>().FactionId);
         }
 
         public void Cancel(int index) => removeTaskAtIndex(index);

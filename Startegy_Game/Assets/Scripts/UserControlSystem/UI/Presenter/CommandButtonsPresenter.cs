@@ -16,19 +16,26 @@ namespace UserControlSystem.UI.Presenter
     {
         [SerializeField] private CommandButtonsView _view;
         [Inject] private IObservable<ISelectable> _selectedValues;
+        [Inject] private IObservable<Vector3> _groundClicksRMB;
         [Inject] private CommandButtonsModel _model;
+        [Inject] private SelectableValue _selectedObject;
         private ISelectable _currentSelectable;
-        
+        private GameObject _gameObject;
+
         private void Start()
         {
             _view.OnClick += _model.OnCommandButtonClicked;
             _model.OnCommandSent += _view.UnblockAllInteractions;
             _model.OnCommandCancel += _view.UnblockAllInteractions;
             _model.OnCommandAccepted += _view.BlockInteractions;
-
+            _groundClicksRMB.Subscribe(OnRightClicked);
             _selectedValues.Subscribe(ONSelected);
         }
-
+        private void OnRightClicked(Vector3 value)
+        {
+            var queue = _selectedObject.CurrentValue.GameObject.GetComponentInParent<ICommandsQueue>();
+            queue?.EnqueueCommand(new MoveCommand(value));
+        }
         private void ONSelected(ISelectable selectable)
         {
             if (_currentSelectable == selectable)
